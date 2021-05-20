@@ -1,7 +1,10 @@
 package main
 
-import "github.com/Yapcheekian/bank-golang/migrations"
+import (
+	"github.com/Yapcheekian/bank-golang/api"
+)
 
 func main() {
-	migrations.Migrate()
+	// migrations.Migrate()
+	api.StartApi()
 }
