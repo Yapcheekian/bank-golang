@@ -19,6 +19,12 @@ type Account struct {
 	UserID  uint
 }
 
+type Register struct {
+	Username string
+	Email    string
+	Password string
+}
+
 type ResponseAccount struct {
 	ID      uint
 	Name    string
@@ -30,4 +36,9 @@ type ResponseUser struct {
 	Username string
 	Email    string
 	Accounts []ResponseAccount
+}
+
+type Validation struct {
+	Value string
+	Valid string
 }
