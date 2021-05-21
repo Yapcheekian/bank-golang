@@ -38,6 +38,10 @@ type ResponseUser struct {
 	Accounts []ResponseAccount
 }
 
+type ErrResponse struct {
+	Message string
+}
+
 type Validation struct {
 	Value string
 	Valid string

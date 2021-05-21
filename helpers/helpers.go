@@ -1,6 +1,9 @@
 package helpers
 
 import (
+	"encoding/json"
+	"log"
+	"net/http"
 	"regexp"
 
 	"github.com/Yapcheekian/bank-golang/interfaces"
@@ -48,4 +51,18 @@ func Validate(values []interfaces.Validation) bool {
 		}
 	}
 	return true
+}
+
+func PanicHandler(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		defer func() {
+			error := recover()
+			if error != nil {
+				log.Println(error)
+				resp := interfaces.ErrResponse{Message: "Internal server error"}
+				json.NewEncoder(w).Encode(resp)
+			}
+		}()
+		next.ServeHTTP(w, r)
+	})
 }
